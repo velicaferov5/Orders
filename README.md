@@ -4,6 +4,7 @@ ID
 Type
 Name
 Description
+Price
 
 Stock have:
 ID (linked with product ID)
@@ -13,6 +14,8 @@ Orders have:
 ID
 Products
 State
+Date
+Total Price
 
 Products, stock, order can be inserted, get, update, removed and managed with REST services.
 
