@@ -1,7 +1,7 @@
 package com.orders.api.model;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Map;
 
 @Entity
@@ -24,7 +24,7 @@ public class Order {
     private Double totalPrice;
 
     @Column
-    private Date date;
+    private LocalDateTime date;
 
     public Integer getId() {
         return id;
@@ -58,11 +58,11 @@ public class Order {
         this.totalPrice = totalPrice;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

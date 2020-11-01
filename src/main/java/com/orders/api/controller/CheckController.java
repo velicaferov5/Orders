@@ -9,6 +9,6 @@ public class CheckController {
 
     @RequestMapping("/")
     public String home() {
-        return "Products API is working!";
+        return "Orders API is working!";
     }
 }

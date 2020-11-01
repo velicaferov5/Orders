@@ -53,6 +53,7 @@ public class OrderService {
             Order order = new Order();
             order.setState(Order.Status.RUNNING);
             order.setProducts(products);
+            order.setDate(java.time.LocalDateTime.now());
             order.setTotalPrice(totalPrice);
             orderRepository.save(order);
             return Optional.of(order);
