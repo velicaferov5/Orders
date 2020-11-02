@@ -31,7 +31,7 @@ public class ProductController {
      * @return optional product
      */
     @GetMapping(value = "/get/{id}")
-    public Optional<Product> getProduct (@PathVariable(name="id") Integer id) {
+    public Optional<Product> getProduct (@PathVariable(name="id") int id) {
         return productService.getProductById(id);
     }
 
@@ -53,7 +53,7 @@ public class ProductController {
      * @return result of remove
      */
     @DeleteMapping(value = "/remove/{id}")
-    public boolean removeProduct (@PathVariable(name="id") Integer id) {
+    public boolean removeProduct (@PathVariable(name="id") int id) {
         return productService.removeProductById(id);
     }
 }

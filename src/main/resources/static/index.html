@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders API</title>
+</head>
+<body>
+<h2> Welcome to Orders API</h2>
+<div>
+    <p>API allows to insert, get, update, remove and manage products, stock and orders.<br/>
+
+    <p>Products have: ID, Type, Name, Description, Price.</p>
+
+    <p>Stock have: ID (linked with product ID), Amount.</p>
+
+    <p>Orders have: ID, Products, Status, Date, Total Price.</p>
+
+    <p>Products, stock, order can be inserted, get, update, removed and managed with REST services.</p>
+
+    <p>Requirement to run (Java version): 11</p><br/>
+</div>
+<div>
+    <h3>REST-ful services in API:</h3>
+    <p>
+        <b>Check API</b><br/>
+        URL: /api/ <br/>
+        Input: none <br/>
+        Output: none <br/>
+        Type: Any <br/>
+        Use: To print API is working
+    </p>
+    <p>
+        <b>Products</b><br/>
+        URL: /api/product/get/{id} <br/>
+        Input: id (int) <br/>
+        Output: Optional <br/>
+        Type: GET <br/>
+        Use: Get product by ID
+    </p>
+
+    <p>
+    URL: /api/product/new <br/>
+    Input: Product <br/>
+    Output: Product <br/>
+    Type: PUT <br/>
+    Use: To add new product
+    </p>
+
+    <p>
+    URL: /api/product/remove/{id} <br/>
+    Input: id (int) <br/>
+    Output: boolean (success) <br/>
+    Type: DELETE <br/>
+    Use: Delete product
+    </p>
+
+    <p>
+        <b>Stocks</b><br/>
+        URL: /api/stock/get/{id} <br/>
+        Input: id (int) <br/>
+        Output: int <br/>
+        Type: GET <br/>
+        Use: Get stock amount by ID
+    </p>
+
+    <p>
+    URL: /api/stock/in/{id}/{amount} <br/>
+    Input: id (int), amount (int) <br/>
+    Output: Optional<\Stock> <br/>
+    Type: POST <br/>
+    Use: To add new products to stock
+    </p>
+
+    <p>
+    URL: /api/stock/out/{id}/{amount} <br/>
+    Input: id (int), amount (int) <br/>
+    Output: Optional<\Stock> <br/>
+    Type: POST <br/>
+    Use: To take products from stock
+    </p>
+
+    <p>
+    URL: /api/stock/update <br/>
+    Input: Stock <br/>
+    Output: Optional<\Stock> <br/>
+    Type: PUT <br/>
+    Use: To update stock
+    </p>
+
+    <p>
+    URL: /api/stock/remove/{id} <br/>
+    Input: id (int) <br/>
+    Output: boolean (success) <br/>
+    Type: DELETE <br/>
+    Use: Remove stock
+    </p>
+
+    <p>
+        <b>Orders</b><br/>
+        URL: /api/order/get/{id} <br/>
+        Input: id (int) <br/>
+        Output: Optional<\Order> <br/>
+        Type: GET <br/>
+        Use: Get order by ID
+    </p>
+
+    <p>
+    URL: /api/order/new <br/>
+    Input: products (Map</Product, Integer>) <br/>
+    Output: Optional<\Order> <br/>
+    Type: POST <br/>
+    Use: To make new order
+    </p>
+
+    <p>
+    URL: /api/order/cancel/{id} <br/>
+    Input: id (int) <br/>
+    Output: Optional<\Order> <br/>
+    Type: PUT <br/>
+    Use: To cancel order by id
+    </p>
+</div>
+</body>
+</html>
