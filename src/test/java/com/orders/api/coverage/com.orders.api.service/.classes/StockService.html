@@ -1,0 +1,165 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: StockService</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.orders.api.service</a> ]
+</div>
+
+<h1>Coverage Summary for Class: StockService (com.orders.api.service)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">StockService</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    70%
+  </span>
+  <span class="absValue">
+    (14/ 20)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.orders.api.service;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.orders.api.interfaces.StockRepository;
+<i>4</i>&nbsp;import com.orders.api.model.Stock;
+<i>5</i>&nbsp;import org.springframework.stereotype.Service;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import java.util.Optional;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;/**
+<i>10</i>&nbsp; * Services to manage stock
+<i>11</i>&nbsp; */
+<i>12</i>&nbsp;@Service
+<i>13</i>&nbsp;public class StockService {
+<i>14</i>&nbsp;    private StockRepository stockRepository;
+<i>15</i>&nbsp;
+<b class="fc"><i>16</i>&nbsp;    public StockService(StockRepository stockRepository) {</b>
+<b class="fc"><i>17</i>&nbsp;        this.stockRepository = stockRepository;</b>
+<b class="fc"><i>18</i>&nbsp;    }</b>
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;    /**
+<i>21</i>&nbsp;     * Gets stock amount by {@param id}.
+<i>22</i>&nbsp;     * @param id
+<i>23</i>&nbsp;     * @return stock&#39;s id
+<i>24</i>&nbsp;     */
+<i>25</i>&nbsp;    public int getStockAmountById(int id) {
+<b class="fc"><i>26</i>&nbsp;         Optional&lt;Stock&gt; result = stockRepository.findById(id);</b>
+<b class="fc"><i>27</i>&nbsp;         return result.map(Stock::getAmount).orElse(0);</b>
+<i>28</i>&nbsp;    }
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;    /**
+<i>31</i>&nbsp;     * Allows to add {@param amount} product with {@param id}
+<i>32</i>&nbsp;     * @param id
+<i>33</i>&nbsp;     * @param amount
+<i>34</i>&nbsp;     * @return optional updated stock
+<i>35</i>&nbsp;     */
+<i>36</i>&nbsp;    public Optional&lt;Stock&gt; addStock(int id, int amount) {
+<i>37</i>&nbsp;        try {
+<b class="fc"><i>38</i>&nbsp;            int newAmount = Math.max(getStockAmountById(id) + amount, 0);</b>
+<b class="fc"><i>39</i>&nbsp;            Stock stock = new Stock();</b>
+<b class="fc"><i>40</i>&nbsp;            stock.setId(id);</b>
+<b class="fc"><i>41</i>&nbsp;            stock.setAmount(newAmount);</b>
+<b class="fc"><i>42</i>&nbsp;            return Optional.of(stockRepository.save(stock));</b>
+<b class="nc"><i>43</i>&nbsp;        } catch(Exception e) {</b>
+<b class="nc"><i>44</i>&nbsp;            e.printStackTrace();</b>
+<b class="nc"><i>45</i>&nbsp;            return Optional.empty();</b>
+<i>46</i>&nbsp;        }
+<i>47</i>&nbsp;    }
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;    /**
+<i>50</i>&nbsp;     * Allows to take product from stock out.
+<i>51</i>&nbsp;     * @param id
+<i>52</i>&nbsp;     * @param amount
+<i>53</i>&nbsp;     * @return optional updated stock
+<i>54</i>&nbsp;     */
+<i>55</i>&nbsp;    public Optional&lt;Stock&gt; takeStock(int id, int amount) {
+<b class="fc"><i>56</i>&nbsp;        return addStock(id, -amount);</b>
+<i>57</i>&nbsp;    }
+<i>58</i>&nbsp;
+<i>59</i>&nbsp;    /**
+<i>60</i>&nbsp;     * Allows to update stock
+<i>61</i>&nbsp;     * @param stock
+<i>62</i>&nbsp;     * @return optional updated stock
+<i>63</i>&nbsp;     */
+<i>64</i>&nbsp;    public Optional&lt;Stock&gt; updateStock(Stock stock) {
+<b class="fc"><i>65</i>&nbsp;        return Optional.of(stockRepository.save(stock));</b>
+<i>66</i>&nbsp;    }
+<i>67</i>&nbsp;
+<i>68</i>&nbsp;    /**
+<i>69</i>&nbsp;     * Allows to remove from stock product with {@param id}.
+<i>70</i>&nbsp;     * @param id
+<i>71</i>&nbsp;     * @return result of removing
+<i>72</i>&nbsp;     */
+<i>73</i>&nbsp;    public boolean removeStockById(int id) {
+<i>74</i>&nbsp;        try {
+<b class="fc"><i>75</i>&nbsp;            stockRepository.deleteById(id);</b>
+<b class="fc"><i>76</i>&nbsp;            return true;</b>
+<b class="nc"><i>77</i>&nbsp;        } catch (Exception e) {</b>
+<b class="nc"><i>78</i>&nbsp;            e.printStackTrace();</b>
+<b class="nc"><i>79</i>&nbsp;            return false;</b>
+<i>80</i>&nbsp;        }
+<i>81</i>&nbsp;    }
+<i>82</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-11-02 02:25</div>
+</div>
+</body>
+</html>

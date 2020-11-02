@@ -2,6 +2,7 @@ package com.orders.api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.orders.api.interfaces.StockRepository;
+import com.orders.api.model.Product;
 import com.orders.api.model.Stock;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -104,6 +105,17 @@ class StockControllerTest {
     private Stock newStock() {
         Stock stock = new Stock();
         stock.setAmount(1);
+        stock.setProduct(newProduct());
         return stock;
+    }
+
+    Product newProduct() {
+        Product product = new Product();
+        product.setId(1);
+        product.setType("book");
+        product.setName("Reality");
+        product.setDescription("Book about Reality");
+        product.setPrice(10.00);
+        return product;
     }
 }

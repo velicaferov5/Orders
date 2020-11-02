@@ -64,7 +64,7 @@ class ProductControllerTest {
         mockMvc.perform(builder)
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.content().json("{\"id\":1,\"type\":\"book\",\"name\":\"Reality\",\"description\":\"Book about Reality\"}"));
+                .andExpect(MockMvcResultMatchers.content().json("{\"id\":1,\"type\":\"book\",\"name\":\"Reality\",\"description\":\"Book about Reality\",\"price\":10.0}"));
     }
 
     @Test
@@ -78,9 +78,11 @@ class ProductControllerTest {
 
     Product newProduct() {
         Product product = new Product();
+        product.setId(1);
         product.setType("book");
         product.setName("Reality");
         product.setDescription("Book about Reality");
+        product.setPrice(10.00);
         return product;
     }
 }

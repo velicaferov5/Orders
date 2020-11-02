@@ -30,4 +30,21 @@ public class Stock {
     public void setAmount(int amount) {
         this.amount = amount;
     }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    @Override
+    public String toString() {
+        return "Stock{" +
+                "id=" + id +
+                ", amount=" + amount +
+                ", product=" + product +
+                '}';
+    }
 }
